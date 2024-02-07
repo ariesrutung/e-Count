@@ -7,7 +7,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3 class="mb-5 text-center"><em>e-Caunt | Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Kabupaten Manokwari</em></h3>
+                <h3 class="mb-5 text-center"><em>e-Count | Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Kabupaten Manokwari</em></h3>
             </div>
         </div>
         <div class="row gx-0">
