@@ -2,7 +2,7 @@
 <header class="masthead d-flex align-items-center">
 	<div class="container px-4 px-lg-5 text-center">
 		<h1 class="mb-1">e-Count</h1>
-		<h3 class="mb-5"><em>Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Kabupaten Manokwari</em></h3>
+		<h3 class="mb-5"><em>Aplikasi Hitung Cepat - Pemilihan Anggota DPR Provinsi NTT</em></h3>
 		<div class="row gx-4 gx-lg-5 d-flex justify-content-center">
 			<div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
 				<div class="col-lg-6 col-md-12 text-light rounded-circle mx-auto mb-3 font-weight-bold">
@@ -45,17 +45,24 @@
 							<?php
 							$no = 1;
 							$totalSuara = 0; // Inisialisasi total suara
-							foreach ($data_tps as $tps) {
-								echo "<tr>";
-								echo "<td>{$no}</td>";
-								echo "<td><a href='" . base_url('welcome/tabel_tps/') . urlencode($tps->wilayah) . "'>{$tps->wilayah}</a></td>";
-								echo "<td>{$tps->total_suara}</td>";
-								echo "</tr>";
+							foreach ($data_tps as $key) {
+								?>
+								<tr>
+									<td><?php echo $no; ?></td>
+									<td>
+										<a href='<?php echo base_url('welcome/tabel_tps/') . urlencode($key->wilayah); ?>'>
+											<?php echo $key->wilayah; ?>
+										</a>
+									</td>
+									<td><?php echo $key->total_suara; ?></td>
+								</tr>
+							<?php
 								$no++;
-								$totalSuara += $tps->total_suara; // Tambahkan suara pada total
+								$totalSuara += $key->total_suara; // Tambahkan suara pada total
 							}
 							?>
 						</tbody>
+
 						<tfoot class="bg-dark text-light">
 							<tr>
 								<td colspan="2" class="align-left text-bold">Total Suara:</td>

@@ -41,9 +41,6 @@ class Welcome extends CI_Controller
 		$data['data_suara'] = $this->Hitung_model->getDataSuara();
 		$data['data_tps'] = $this->Hitung_model->getDataTPS();
 
-		// $namaDesa = $this->input->post('namaDesa');
-		// $data['data_tps'] = $this->Hitung_model->getDataTPSByDesa($namaDesa);
-
 		$data['data_desa'] = $this->Hitung_model->getDataDesa();
 
 		// Load view dengan data jumlah suara

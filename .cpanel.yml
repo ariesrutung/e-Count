@@ -1,0 +1,12 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/n1589789/public_html/hitungcepat/
+    - /bin/cp composer.json $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp license.txt $DEPLOYPATH
+    - /bin/cp README.md $DEPLOYPATH
+    - /bin/cp readme.rst $DEPLOYPATH
+    - /bin/cp -R application $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R system $DEPLOYPATH

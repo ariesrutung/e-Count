@@ -26,12 +26,20 @@ class Hitung_model extends CI_Model
 
     public function getDataTPS()
     {
-        $query = $this->db->select('wilayah, SUM(jumlah_suara) as total_suara')
+        $query = $this->db->select('id, wilayah, SUM(jumlah_suara) as total_suara')
             ->group_by('wilayah')
             ->get('datamasuk');
 
         return $query->result();
     }
+
+
+    public function getDataTPSWilayah()
+    {
+        $query = $this->db->get('data_wilayah'); // Ganti 'namatabel_tps_wilayah' dengan nama tabel Anda
+        return $query->result();
+    }
+
 
     public function getDataDesa()
     {
