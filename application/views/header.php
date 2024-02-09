@@ -79,7 +79,7 @@
             align-items: center;
         }
 
-        .w-25 {
+        #profil .w-25 {
             width: 25% !important;
             display: flex;
             justify-content: center;

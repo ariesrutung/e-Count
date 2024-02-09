@@ -14,6 +14,14 @@ class Hitung_model extends CI_Model
         }
     }
 
+    public function get_datamasuk()
+    {
+        $query = $this->db->select('*')
+            ->get('datamasuk');
+
+        return $query->result();
+    }
+
     public function getDataSuara()
     {
         $query = $this->db->select('tps, SUM(jumlah_suara) as total_suara')
@@ -38,7 +46,6 @@ class Hitung_model extends CI_Model
         $query = $this->db->get('data_wilayah'); // Ganti 'namatabel_tps_wilayah' dengan nama tabel Anda
         return $query->result();
     }
-
 
     public function getDataDesa()
     {
@@ -81,7 +88,7 @@ class Hitung_model extends CI_Model
 
     public function getDataTPSByWilayah($wilayah)
     {
-        $query = $this->db->select('tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
+        $query = $this->db->select('nomor_hp, wilayah, bukti, tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
             ->where('wilayah', $wilayah)
             ->group_by('tps')
             ->get('datamasuk');
