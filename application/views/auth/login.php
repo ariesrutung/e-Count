@@ -171,7 +171,7 @@
     <div class="row">
       <div class="col-lg-12 background">
         <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
-          <div class="card mt-5" style="background-color: #fff !important; border:solid 0px !important;">
+          <div class="card" style="background-color: #fff !important; border:solid 0px !important;">
             <div class="upper">
               <div class="row">
                 <h1 class="text-center"><?php echo lang('login_heading'); ?></h1><br>

@@ -96,7 +96,7 @@
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="sidebar-brand"><a href="#page-top">Menu</a></li>
+            <li class="sidebar-brand"><a href="#!">Menu</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url('/') ?>">Beranda</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url() ?>welcome/inputdata">Tambah Data</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url() ?>pdfview/data_masuk">Unduh Laporan</a></li>

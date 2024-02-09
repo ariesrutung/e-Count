@@ -1,7 +1,7 @@
 <!-- Footer-->
 <footer class="footer text-center">
     <div class="container px-4 px-lg-5">
-        <p class="text-muted small mb-0">Copyright &copy; Hitung Cepat 2024</p>
+        <p class="text-muted small mb-0">Copyright &copy; 2024 | <a href="https://sahabatsuriyati.com/">sahabatsuriyati.com</a></p>
     </div>
 </footer>
 <!-- Scroll to Top Button-->
