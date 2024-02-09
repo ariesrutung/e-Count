@@ -161,11 +161,14 @@
 		</div>
 		<div class="row mt-5">
 			<div class="col-md-12">
-				<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>welcome/inputdata">Lapor Sekarang</a>
+				<?php if (!$this->ion_auth->logged_in()) : ?>
+					<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>auth/login">Lapor Sekarang</a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
 </header>
+
 <section class="content-section" id="portfolio">
 	<div class="container px-4 px-lg-5">
 		<div class="content-section-heading text-center">

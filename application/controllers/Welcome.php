@@ -1,8 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-require FCPATH . 'vendor/autoload.php';
-
-use Mpdf\Mpdf;
 
 class Welcome extends CI_Controller
 {
@@ -11,6 +8,7 @@ class Welcome extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Hitung_model'); // Load model di constructor
+		$this->load->library(['ion_auth', 'form_validation']);
 	}
 
 	public function index()
@@ -34,10 +32,18 @@ class Welcome extends CI_Controller
 		$this->load->view('footer');
 	}
 
+
 	public function inputdata()
 	{
+		$this->load->library(['ion_auth', 'form_validation']);
+
+		// Periksa apakah pengguna sudah login
+		if (!$this->ion_auth->logged_in()) {
+			// Jika belum, arahkan ke halaman login
+			redirect('auth/login', 'refresh');
+		}
+
 		// Ambil data TPS untuk dropdown
-		// $data['data_tps'] = $this->Hitung_model->get_data_tps();
 		$data['data_wilayah'] = $this->Hitung_model->get_data_wilayah();
 		$judul['title'] = 'Aplikasi Hitung Cepat';
 		// Load view form input data
@@ -102,15 +108,5 @@ class Welcome extends CI_Controller
 		$this->load->view('header', $judul);
 		$this->load->view('tabel_tps', $data);
 		$this->load->view('footer');
-	}
-
-	public function generatePDF()
-	{
-		$data['records'] = $this->Hitung_model->getSortedData();
-
-		$html = $this->load->view('pdf_view', $data, true);
-		$mpdf = new Mpdf();
-		$mpdf->WriteHTML($html);
-		$mpdf->Output('data_masuk.pdf', 'D'); // Download PDF file
 	}
 }
