@@ -178,7 +178,7 @@
                   <input type="submit" name="submit" value="Login">
                 </p>
               </form>
-
+              <a href="<?= base_url('/') ?>"></a>
             </div>
           </div>
         </div>
