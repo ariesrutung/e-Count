@@ -33,7 +33,6 @@ class Hitung_model extends CI_Model
         return $query->result();
     }
 
-
     public function getDataTPSWilayah()
     {
         $query = $this->db->get('data_wilayah'); // Ganti 'namatabel_tps_wilayah' dengan nama tabel Anda

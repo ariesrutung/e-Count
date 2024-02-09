@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 <section class="content-section" id="portfolio">
     <div class="container px-4 px-lg-5">
         <div class="content-section-heading text-center">
@@ -7,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h3 class="mb-5 text-center"><em>e-Count | Aplikasi Hitung Cepat - Pemilihan Anggota DPR Provinsi NTT</em></h3>
+                <h3 class="mb-5 text-center"><em>e-Count | Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Dapil 1 Kabupaten Manokwari</em></h3>
             </div>
         </div>
         <div class="row gx-0">
@@ -29,9 +30,9 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="wilayah" class="form-label">Pilih Wilayah:</label>
+                                <label for="wilayah" class="form-label">Pilih Wilayah TPS:</label>
                                 <select class="form-select" id="wilayah" name="wilayah">
-                                    <option value="" selected="selected" disabled>Pilih TPS</option>
+                                    <option value="" selected="selected" disabled>Pilih Wilayah TPS</option>
                                     <?php foreach ($data_wilayah as $wil) : ?>
                                         <option value="<?php echo $wil->nama_wilayah; ?>"><?php echo $wil->nama_wilayah; ?></option>
                                     <?php endforeach; ?>
@@ -40,15 +41,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="tps" class="form-label">Pilih TPS:</label>
-                                <select class="form-select" id="tps" name="tps">
-                                    <option value="" selected="selected" disabled>Pilih TPS</option>
-                                    <?php foreach ($data_tps as $tps) : ?>
-                                        <option value="<?php echo $tps->nama_tps; ?>"><?php echo $tps->nama_tps; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label for="tps" class="form-label">Nomor TPS:</label>
+                                <input type="text" class="form-control" id="tps" name="tps" placeholder="Ketikkan Nomor TPS" required>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="jumlah_suara" class="form-label">Jumlah Suara:</label>

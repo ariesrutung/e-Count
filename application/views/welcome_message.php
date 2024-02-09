@@ -1,8 +1,11 @@
 <!-- Header-->
 <header class="masthead d-flex align-items-center">
 	<div class="container px-4 px-lg-5 text-center">
+		<div class="row d-flex justify-content-center">
+			<img class="w-25" src="<?= base_url('') ?>assets/assets/img/suryati.jpg" alt="Suryati">
+		</div>
 		<h1 class="mb-1">e-Count</h1>
-		<h3 class="mb-5"><em>Aplikasi Hitung Cepat - Pemilihan Anggota DPR Provinsi NTT</em></h3>
+		<h3 class="mb-5"><em>Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Dapil 1 Kabupaten Manokwari</em></h3>
 		<div class="row gx-4 gx-lg-5 d-flex justify-content-center">
 			<div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
 				<div class="col-lg-6 col-md-12 text-light rounded-circle mx-auto mb-3 font-weight-bold">
@@ -29,7 +32,7 @@
 		<div class="row gx-0">
 			<div id="tabelchart" class="col-lg-5 mb-5">
 				<div class="row mb-3">
-					<h4 class="w-75">Tabel Data Suara by Wilayah</h4>
+					<h4 class="w-75">Tabel Data Suara by Wilayah TPS</h4>
 					<a href="<?php echo base_url('welcome/generatePDF'); ?>" class="btn btn-primary btn-sm w-25">Generate PDF</a>
 				</div>
 				<div class="table-responsive">
@@ -75,7 +78,7 @@
 			<div class="col-lg-1"></div>
 			<div class="col-lg-6">
 				<div class="row">
-					<h4 class="mb-3">Grafik Data Suara by Wilayah</h4>
+					<h4 class="mb-3">Grafik Data Suara by Wilayah TPS</h4>
 				</div>
 				<div class="row">
 					<canvas id="chartSuara" height="550"></canvas>

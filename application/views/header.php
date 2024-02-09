@@ -84,6 +84,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            border: 3px solid #fff;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
