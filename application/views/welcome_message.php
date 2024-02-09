@@ -2,7 +2,7 @@
 <header class="masthead d-flex align-items-center">
 	<div class="container px-4 px-lg-5 text-center">
 		<div class="row d-flex justify-content-center">
-			<img class="w-25" src="<?= base_url('') ?>assets/assets/img/suryati.jpg" alt="Suryati">
+			<img class="w-25" src="<?= base_url(); ?>assets/assets/img/suryati.jpg" alt="Suryati">
 		</div>
 		<h1 class="mb-1">e-Count</h1>
 		<h3 class="mb-5"><em>Aplikasi Hitung Cepat - Pemilihan Anggota DPRD Dapil 1 Kabupaten Manokwari</em></h3>
