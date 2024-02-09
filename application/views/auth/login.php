@@ -7,6 +7,7 @@
   <title>Login - E-Man</title>
   <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
   <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     .background {
       background-color: rgba(0, 0, 0, 0.7);
@@ -148,6 +149,20 @@
     .hidden {
       display: none;
     }
+
+    .backToHome {
+      text-decoration: none;
+    }
+
+    i#passwordIcon {
+      color: #17583a;
+    }
+
+    button#togglePassword {
+      background-color: transparent !important;
+      border: 1px solid #ced4da;
+      width: 18%;
+    }
   </style>
 </head>
 
@@ -169,16 +184,21 @@
                   <input type="text" name="identity" id="identity" value="admin@admin.com">
                 </p>
 
-                <p>
-                  <label for="password">Password:</label>
-                  <input type="password" name="password" id="password" value="<?php echo set_value('password'); ?>">
-                </p>
+                <div class="input-group">
+                  <input type="password" name="password" id="password" value="<?php echo set_value('password'); ?>" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="togglePassword">
+                  <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                    <i class="bi bi-eye-slash-fill" id="passwordIcon"></i>
+                  </button>
+                </div>
+
 
                 <p class="mt-5">
                   <input type="submit" name="submit" value="Login">
                 </p>
               </form>
-              <a href="<?= base_url('/') ?>"></a>
+              <div class="row d-flex justify-content-center">
+                <a class="backToHome mt-4 text-center w-100" href="<?= base_url('/') ?>">Kembali ke Beranda</a>
+              </div>
             </div>
           </div>
         </div>
@@ -187,6 +207,26 @@
 
     </div>
     <script type='text/javascript' src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'></script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+        const passwordIcon = document.getElementById('passwordIcon');
+
+        togglePassword.addEventListener('click', function() {
+          const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+          passwordField.setAttribute('type', type);
+          if (type === 'password') {
+            passwordIcon.classList.remove('bi-eye-fill');
+            passwordIcon.classList.add('bi-eye-slash-fill');
+          } else {
+            passwordIcon.classList.remove('bi-eye-slash-fill');
+            passwordIcon.classList.add('bi-eye-fill');
+          }
+        });
+      });
+    </script>
 </body>
 
 </html>
