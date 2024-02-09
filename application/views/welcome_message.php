@@ -10,7 +10,16 @@
 			<div class="col-lg-6 col-md-12 mb-5 mb-lg-0">
 				<div class="col-lg-6 col-md-12 text-light rounded-circle mx-auto mb-3 font-weight-bold">
 					<span id="jumlahSuara">JUMLAH SUARA LIVE!</span>
-					<span id=""><?= number_format($jumlah_suara, 0, ',', '.'); ?></span>
+					<?php
+					// Cek apakah database kosong
+					if ($jumlah_suara == 0) {
+						// Jika kosong, tampilkan angka 0
+						echo '<span id="">0</span>';
+					} else {
+						// Jika tidak kosong, tampilkan jumlah suara dengan format yang diinginkan
+						echo '<span id="">' . number_format($jumlah_suara, 0, ',', '.') . '</span>';
+					}
+					?>
 				</div>
 				<h4>Waktu sekarang: <strong id="jam_detik"> <?= $waktu_sekarang_wit; ?></strong></h4>
 				<p class="text-faded mb-0"><?= $tanggal_indonesia; ?></p>
