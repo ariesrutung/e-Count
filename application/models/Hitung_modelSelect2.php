@@ -63,14 +63,6 @@ class Hitung_model extends CI_Model
         $this->db->insert('datamasuk', $data);
     }
 
-    // public function get_data_tps()
-    // {
-    //     $query = $this->db->select('*')
-    //         ->get('data_tps');
-
-    //     return $query->result();
-    // }
-
     public function get_data_tps1()
     {
         // Query untuk mengambil data TPS dari tabel 'data_tps'
