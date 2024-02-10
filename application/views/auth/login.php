@@ -181,7 +181,7 @@
               <form action="<?php echo base_url('auth/login'); ?>" method="post">
                 <p class="hidden">
                   <label for="identity">Email/Username:</label>
-                  <input type="text" name="identity" id="identity" value="admin@admin.com">
+                  <input type="text" name="identity" id="identity" value="ariesrutung@gmail.com">
                 </p>
 
                 <div class="input-group">
