@@ -53,13 +53,6 @@
     th.w-20.bukti.sorting {
         text-align: center;
     }
-
-    /* 
-    .col-2 {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    } */
 </style>
 <section class="content-section" id="portfolio">
     <div class="container px-4 px-lg-5">

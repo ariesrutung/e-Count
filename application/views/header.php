@@ -99,7 +99,7 @@
             <li class="sidebar-brand"><a href="#!">Menu</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url('/') ?>">Beranda</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url() ?>welcome/inputdata">Tambah Data</a></li>
-            <li class="sidebar-nav-item"><a href="<?= base_url() ?>pdfview/data_masuk">Unduh Laporan</a></li>
+            <!-- <li class="sidebar-nav-item"><a href="<?= base_url() ?>pdfview/data_masuk">Unduh Laporan</a></li> -->
             <!-- <li class="sidebar-nav-item"><a href="<?= base_url() ?>auth/login">Login</a></li> -->
 
         </ul>
