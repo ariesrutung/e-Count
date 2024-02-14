@@ -76,6 +76,18 @@
         padding: 10px 0;
     }
 
+    table.dataTable tbody td:nth-child(3),
+    table.dataTable tbody td:nth-child(4),
+    table.dataTable tbody td:nth-child(5) {
+        text-align: center;
+    }
+
+    table.dataTable thead th:nth-child(3),
+    table.dataTable thead th:nth-child(4),
+    table.dataTable thead th:nth-child(5) {
+        text-align: center;
+    }
+
     table.dataTable tfoot th,
     table.dataTable tfoot td {
         padding: 10px 0;
@@ -102,12 +114,12 @@
         width: 20%;
     }
 
-    .w-60 {
+    .w-40 {
         width: 60%;
     }
 
-    .w-35 {
-        width: 35%;
+    .sorting_1 {
+        text-align: center;
     }
 </style>
 <section class="content-section" id="portfolio">
@@ -124,11 +136,10 @@
                         <table id="tabelSuara" class="table table-borderless mt-4">
                             <thead class="bg-dark text-light">
                                 <tr>
-                                    <th class="w-10">No.</th>
-                                    <th class="w-25">Nama Saksi</th>
-                                    <th class="w-20">No. HP</th>
-                                    <th class="w-15">No. TPS</th>
-                                    <th class="w-15">Qty. Suara</th>
+                                    <th>No.</th>
+                                    <th>Nama Saksi</th>
+                                    <th>No. TPS</th>
+                                    <th>Qty. Suara</th>
                                     <?php if ($this->ion_auth->logged_in()) : ?>
                                         <th>Aksi</th>
                                     <?php endif; ?>
@@ -141,11 +152,10 @@
                                     foreach ($data_tps_wilayah as $tps) {
                                         ?>
                                     <tr>
-                                        <td class="w-10"><?php echo $no; ?></td>
-                                        <td class="w-25"><?php echo $tps->nama_lengkap; ?></td>
-                                        <td class="w-20"><?php echo $tps->nomor_hp; ?></td>
-                                        <td class="w-15"><?php echo $tps->tps; ?></td>
-                                        <td class="w-15"><?php echo format_angka($tps->total_suara); ?></td>
+                                        <td><?php echo $no; ?></td>
+                                        <td><?php echo $tps->nama_lengkap; ?></td>
+                                        <td><?php echo $tps->tps; ?></td>
+                                        <td><?php echo format_angka($tps->total_suara); ?></td>
                                         <?php if ($this->ion_auth->logged_in()) : ?>
                                             <td>
                                                 <a href="#" class="btn btn-primary edit-btn btn-sm text-white m-1" data-id="<?= $tps->id; ?>" data-bs-toggle="modal" data-bs-target="#editData">Edit</a>
@@ -162,7 +172,6 @@
 
                             <tfoot class="bg-dark text-light">
                                 <tr>
-                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <?php if ($this->ion_auth->logged_in()) : ?>
