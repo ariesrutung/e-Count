@@ -420,7 +420,7 @@
 			valueSuffix: ' suara'
 		},
 		subtitle: {
-			text: 'Sumber: Data TPS'
+			text: 'Sumber: Data dari <a href="https://sahabatsuriyati.com/">sahabatsuriyati.com</a>'
 		},
 		plotOptions: {
 			pie: {
