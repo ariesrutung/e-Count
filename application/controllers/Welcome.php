@@ -121,4 +121,17 @@ class Welcome extends CI_Controller
 			echo validation_errors();
 		}
 	}
+
+	// Method untuk mengosongkan tabel datamasuk
+	public function clear_data_masuk()
+	{
+		// Panggil method clearDataMasuk dari model
+		$this->Hitung_model->clearDataMasuk();
+
+		// Set pesan sukses jika diperlukan
+		$this->session->set_flashdata('success_message', 'Tabel datamasuk berhasil dikosongkan.');
+
+		// Redirect ke halaman yang sesuai
+		redirect('welcome'); // Atau redirect ke halaman lain jika diperlukan
+	}
 }

@@ -93,19 +93,40 @@
 
 <body id="page-top">
     <!-- Navigation-->
+    <!-- Navigation-->
     <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <li class="sidebar-brand"><a href="#!">Menu</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url('/') ?>">Beranda</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url() ?>welcome/inputdata">Tambah Data</a></li>
-            <!-- <li class="sidebar-nav-item"><a href="<?= base_url() ?>pdfview/data_masuk">Unduh Laporan</a></li> -->
-            <?php if (!$this->ion_auth->logged_in()) : ?>
+            <?php if ($this->ion_auth->logged_in()) : ?>
+                <li class="sidebar-nav-item">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#clearDatabaseModal">Hapus Database</a>
+                </li>
+                <li class="sidebar-nav-item"><a href="<?= base_url() ?>auth/logout">Logout</a></li>
+            <?php else : ?>
                 <li class="sidebar-nav-item"><a href="<?= base_url() ?>auth/login">Login</a></li>
             <?php endif; ?>
-            <?php if ($this->ion_auth->logged_in()) : ?>
-                <li class="sidebar-nav-item"><a href="<?= base_url() ?>auth/logout">Logout</a></li>
-            <?php endif; ?>
-
         </ul>
     </nav>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="clearDatabaseModal" tabindex="-1" aria-labelledby="clearDatabaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="clearDatabaseModalLabel">Konfirmasi Pengosongan Database</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Apakah Anda yakin ingin mengosongkan database? Tindakan ini akan menghapus semua data dari tabel datamasuk.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <a href="<?= base_url() ?>welcome/clear_data_masuk" class="btn btn-danger">Konfirmasi Pengosongan</a>
+                </div>
+            </div>
+        </div>
+    </div>
