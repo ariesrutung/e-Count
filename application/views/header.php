@@ -99,8 +99,8 @@
         <ul class="sidebar-nav">
             <li class="sidebar-brand"><a href="#!">Menu</a></li>
             <li class="sidebar-nav-item"><a href="<?= base_url('/') ?>">Beranda</a></li>
-            <li class="sidebar-nav-item"><a href="<?= base_url() ?>welcome/inputdata">Tambah Data</a></li>
             <?php if ($this->ion_auth->logged_in()) : ?>
+                <li class="sidebar-nav-item"><a href="<?= base_url() ?>welcome/inputdata">Tambah Data</a></li>
                 <li class="sidebar-nav-item">
                     <a href="#" data-bs-toggle="modal" data-bs-target="#clearDatabaseModal">Hapus Database</a>
                 </li>
@@ -111,9 +111,8 @@
         </ul>
     </nav>
 
-
     <!-- Modal -->
-    <div class="modal fade" id="clearDatabaseModal" tabindex="-1" aria-labelledby="clearDatabaseModalLabel" aria-hidden="true">
+    <div class="modal fade" id="clearDatabaseModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="clearDatabaseModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

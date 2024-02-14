@@ -161,7 +161,9 @@
 		</div>
 		<div class="row mt-5">
 			<div class="col-md-12">
-				<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>welcome/inputdata">Lapor Sekarang</a>
+				<?php if ($this->ion_auth->logged_in()) : ?>
+					<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>welcome/inputdata">Lapor Sekarang</a>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -390,11 +392,11 @@
 	setInterval(updateDetik, 1000);
 </script>
 
-<!-- <script>
+<script>
 	setInterval(function() {
 		location.reload();
 	}, 5000);
-</script> -->
+</script>
 
 <script>
 	function blinkElement(element, interval) {
