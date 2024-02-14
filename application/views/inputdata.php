@@ -52,12 +52,6 @@
                                 <input type="text" class="form-control" id="jumlah_suara" name="jumlah_suara" placeholder="Ketikkan Jumlah Suara" required>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label for="bukti" class="form-label">Bukti/Dokumentasi:</label>
-                                <input type="file" class="form-control" id="bukti" name="bukti">
-                            </div>
-                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-4">Kirim Data</button>

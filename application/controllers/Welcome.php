@@ -13,6 +13,7 @@ class Welcome extends CI_Controller
 
 	public function index()
 	{
+		$data['data_wilayah'] = $this->Hitung_model->get_data_wilayah();
 		// Panggil method dari model untuk menghitung jumlah suara
 		$data['jumlah_suara'] = $this->Hitung_model->hitungJumlahSuara();
 		date_default_timezone_set('Asia/Jakarta'); // Set zona waktu Indonesia Barat (WIB)
@@ -35,14 +36,6 @@ class Welcome extends CI_Controller
 
 	public function inputdata()
 	{
-		$this->load->library(['ion_auth', 'form_validation']);
-
-		// Periksa apakah pengguna sudah login
-		if (!$this->ion_auth->logged_in()) {
-			// Jika belum, arahkan ke halaman login
-			redirect('auth/login', 'refresh');
-		}
-
 		// Ambil data TPS untuk dropdown
 		$data['data_wilayah'] = $this->Hitung_model->get_data_wilayah();
 		$judul['title'] = 'Aplikasi Hitung Cepat';
@@ -54,45 +47,21 @@ class Welcome extends CI_Controller
 
 	public function process_input()
 	{
-		$config['upload_path']   = './assets/uploads/bukti/';
-		$config['allowed_types'] = 'gif|jpg|jpeg|png';
-		$config['max_size']      = 2048; // Ukuran maksimum file (dalam kilobita)
-		$config['file_name']     = $this->generateFileName(); // Generate nama file baru
+		$data = array(
+			'nama_lengkap' => $this->input->post('nama_lengkap'),
+			'nomor_hp' => $this->input->post('nomor_hp'),
+			'tps' => $this->input->post('tps'),
+			'wilayah' => $this->input->post('wilayah'),
+			'jumlah_suara' => $this->input->post('jumlah_suara')
+		);
 
-		$this->load->library('upload', $config);
+		$this->Hitung_model->inputDataMasuk($data);
 
-		if ($this->upload->do_upload('bukti')) {
-			$data = array(
-				'nama_lengkap' => $this->input->post('nama_lengkap'),
-				'nomor_hp' => $this->input->post('nomor_hp'),
-				'tps' => $this->input->post('tps'),
-				'wilayah' => $this->input->post('wilayah'),
-				'jumlah_suara' => $this->input->post('jumlah_suara'),
-				'bukti' => $config['file_name'] // Gunakan nama file baru
-			);
+		$this->session->set_flashdata('success_message', 'Data berhasil disimpan!');
 
-			$this->Hitung_model->inputDataMasuk($data);
-
-			$this->session->set_flashdata('success_message', 'Data berhasil disimpan!');
-
-			redirect('welcome/inputdata');
-		} else {
-			$error = array('error' => $this->upload->display_errors());
-			print_r($error);
-		}
+		redirect('welcome/inputdata');
 	}
 
-	private function generateFileName()
-	{
-		$namaWilayah = $this->input->post('wilayah');
-		$namaTPS = $this->input->post('tps');
-		$namaFile = strtolower(str_replace(' ', '_', "{$namaWilayah}_tps_{$namaTPS}_"));
-
-		$ext = pathinfo($_FILES['bukti']['name'], PATHINFO_EXTENSION);
-		$namaFile .= "bukti.{$ext}";
-
-		return $namaFile;
-	}
 
 	public function tabel_tps($wilayah)
 	{
@@ -108,5 +77,47 @@ class Welcome extends CI_Controller
 		$this->load->view('header', $judul);
 		$this->load->view('tabel_tps', $data);
 		$this->load->view('footer');
+	}
+
+	public function hapus_data($id)
+	{
+		$this->db->where(['id' => $id]);
+		$this->db->delete('datamasuk');
+		$this->session->set_flashdata('success', 'Berhasil Dihapus!');
+		redirect(base_url('welcome'));
+	}
+
+	public function get_datamasuk($id)
+	{
+		$data = $this->Hitung_model->get_datamasuk_by_id($id);
+		echo json_encode($data);
+	}
+
+
+	public function update_datamasuk()
+	{
+		// Validasi form
+
+		$this->form_validation->set_rules('edit_nama_lengkap', 'Nama Lengkap', 'required');
+		$this->form_validation->set_rules('edit_nomor_hp', 'Nomor HP', 'required');
+		$this->form_validation->set_rules('edit_wilayah', 'Wilayah', 'required');
+		$this->form_validation->set_rules('edit_tps', 'Nomor TPS', 'required');
+		$this->form_validation->set_rules('edit_jumlah_suara', 'Jumlah Suara', 'required');
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = array(
+				'nama_lengkap' => $this->input->post('edit_nama_lengkap'),
+				'nomor_hp' => $this->input->post('edit_nomor_hp'),
+				'wilayah' => $this->input->post('edit_wilayah'),
+				'tps' => $this->input->post('edit_tps'),
+				'jumlah_suara' => $this->input->post('edit_jumlah_suara'),
+			);
+
+			$this->Hitung_model->update_datamasuk($this->input->post('edit_id'), $data);
+
+			echo "Data berhasil diupdate";
+		} else {
+			echo validation_errors();
+		}
 	}
 }

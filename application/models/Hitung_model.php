@@ -34,7 +34,7 @@ class Hitung_model extends CI_Model
 
     public function getDataTPS()
     {
-        $query = $this->db->select('id, wilayah, SUM(jumlah_suara) as total_suara')
+        $query = $this->db->select('id, tps, wilayah, SUM(jumlah_suara) as total_suara')
             ->group_by('wilayah')
             ->get('datamasuk');
 
@@ -43,7 +43,7 @@ class Hitung_model extends CI_Model
 
     public function getDataMasuk()
     {
-        $query = $this->db->select('id, nama_lengkap, nomor_hp, tps, wilayah, SUM(jumlah_suara) as total_suara, bukti')
+        $query = $this->db->select('id, nama_lengkap, nomor_hp, tps, wilayah, SUM(jumlah_suara) as total_suara')
             ->group_by('wilayah')
             ->get('datamasuk');
 
@@ -97,7 +97,7 @@ class Hitung_model extends CI_Model
 
     public function getDataTPSByWilayah($wilayah)
     {
-        $query = $this->db->select('nomor_hp, wilayah, bukti, tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
+        $query = $this->db->select('nomor_hp, wilayah, tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
             ->where('wilayah', $wilayah)
             ->group_by('tps')
             ->get('datamasuk');
@@ -109,5 +109,32 @@ class Hitung_model extends CI_Model
     {
         $this->db->order_by('wilayah', 'ASC');
         return $this->db->get('datamasuk')->result_array();
+    }
+
+    public function deleteData($id)
+    {
+        $this->db->where('id', $id);
+        $this->db->delete('datamasuk'); // Ubah 'datamasuk' dengan nama tabel yang sesuai
+
+        // Periksa apakah data berhasil dihapus
+        if ($this->db->affected_rows() > 0) {
+            return true; // Mengembalikan true jika data berhasil dihapus
+        } else {
+            return false; // Mengembalikan false jika data tidak berhasil dihapus
+        }
+    }
+
+
+    public function get_datamasuk_by_id($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('datamasuk');
+        return $query->row();
+    }
+
+    public function update_datamasuk($id, $data)
+    {
+        $this->db->where('id', $id);
+        $this->db->update('datamasuk', $data);
     }
 }

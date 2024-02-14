@@ -146,10 +146,6 @@
       margin-top: 20px;
     }
 
-    .hidden {
-      display: none;
-    }
-
     .backToHome {
       text-decoration: none;
     }
@@ -162,6 +158,10 @@
       background-color: transparent !important;
       border: 1px solid #ced4da;
       width: 18%;
+    }
+
+    input#identity {
+      height: 50px;
     }
   </style>
 </head>
@@ -179,10 +179,9 @@
               </div>
 
               <form action="<?php echo base_url('auth/login'); ?>" method="post">
-                <p class="hidden">
-                  <label for="identity">Email/Username:</label>
-                  <input type="text" name="identity" id="identity" value="ariesrutung@gmail.com">
-                </p>
+                <div class="input-group mb-3">
+                  <input class="form-control" type="text" name="identity" id="identity" value="<?php echo set_value('identity'); ?>" placeholder="Email">
+                </div>
 
                 <div class="input-group">
                   <input type="password" name="password" id="password" value="<?php echo set_value('password'); ?>" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="togglePassword">

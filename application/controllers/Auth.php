@@ -80,7 +80,7 @@ class Auth extends CI_Controller
 				// if the login is successful
 				// redirect them to the dashboard
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect(base_url('welcome/inputdata'), 'refresh');
+				redirect(base_url('welcome'), 'refresh');
 			} else {
 				// if the login was un-successful
 				// redirect them back to the login page
