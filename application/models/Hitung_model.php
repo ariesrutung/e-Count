@@ -97,7 +97,7 @@ class Hitung_model extends CI_Model
 
     public function getDataTPSByWilayah($wilayah)
     {
-        $query = $this->db->select('nomor_hp, wilayah, tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
+        $query = $this->db->select('id, nomor_hp, wilayah, tps, nama_lengkap, SUM(jumlah_suara) as total_suara')
             ->where('wilayah', $wilayah)
             ->group_by('tps')
             ->get('datamasuk');

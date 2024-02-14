@@ -129,7 +129,9 @@
                                     <th class="w-20">No. HP</th>
                                     <th class="w-15">No. TPS</th>
                                     <th class="w-15">Qty. Suara</th>
-                                    <!-- <th class="w-15">Bukti</th> -->
+                                    <?php if ($this->ion_auth->logged_in()) : ?>
+                                        <th>Aksi</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,13 +146,12 @@
                                         <td class="w-20"><?php echo $tps->nomor_hp; ?></td>
                                         <td class="w-15"><?php echo $tps->tps; ?></td>
                                         <td class="w-15"><?php echo format_angka($tps->total_suara); ?></td>
-                                        <!-- <td class="w-15">
-                                            <?php if (!empty($key->bukti)) : ?>
-                                                <img class="w-50" src="<?= base_url('/assets/uploads/bukti/' . $key->bukti); ?>">
-                                            <?php else : ?>
-                                                <img class="w-50" src="<?= base_url('/assets/uploads/bukti/noimage.png') ?>">
-                                            <?php endif; ?>
-                                        </td> -->
+                                        <?php if ($this->ion_auth->logged_in()) : ?>
+                                            <td>
+                                                <a href="#" class="btn btn-primary edit-btn btn-sm text-white m-1" data-id="<?= $tps->id; ?>" data-bs-toggle="modal" data-bs-target="#editData">Edit</a>
+                                                <a href="#" class="btn btn-danger edit-btn btn-sm text-white m-1" data-bs-toggle="modal" data-bs-target="#hapusData<?= $tps->id; ?>">Hapus</a>
+                                            </td>
+                                        <?php endif; ?>
                                     </tr>
                                 <?php
                                         $no++;
@@ -164,6 +165,9 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
+                                    <?php if ($this->ion_auth->logged_in()) : ?>
+                                        <td></td>
+                                    <?php endif; ?>
                                     <td class="align-left text-bold">Total Suara:</td>
                                     <td class="text-bold"><?php echo format_angka($totalSuara); ?></td>
                                 </tr>
@@ -193,6 +197,86 @@
 </section>
 
 
+<?php foreach ($data_tps_wilayah as $key) : ?>
+    <div class="modal fade" id="hapusData<?= $key->id; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusData<?= $key->id; ?>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hapusData<?= $key->id; ?>Label">Peringatan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="<?= base_url(); ?>welcome/hapus_data/<?= $key->id; ?>">
+                    <div class="modal-body">
+                        <p>Apakah anda yakin ingin menghapus data <?= $key->tps; ?> di wilayah <?= $key->wilayah; ?> ini? </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Ya, Hapus!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
+
+<div class="modal fade" id="editData" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editDataLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDataLabel">Ubah Data Suara</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="editForm" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" id="edit_id" name="edit_id">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_nama_lengkap" class="form-label">Nama Saksi:</label>
+                                <input type="text" class="form-control" id="edit_nama_lengkap" name="edit_nama_lengkap" placeholder="Ketikkan Nama Lengkap" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_nomor_hp" class="form-label">Nomor HP/WA:</label>
+                                <input type="text" class="form-control" id="edit_nomor_hp" name="edit_nomor_hp" placeholder="Ketikkan Nomor HP" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_wilayah" class="form-label">Pilih Wilayah TPS:</label>
+                                <select class="form-select" id="edit_wilayah" name="edit_wilayah">
+                                    <option value="" selected="selected" disabled>Pilih Wilayah TPS</option>
+                                    <?php foreach ($data_wilayah as $wil) : ?>
+                                        <option value="<?php echo $wil->nama_wilayah; ?>"><?php echo $wil->nama_wilayah; ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_tps" class="form-label">Nomor TPS:</label>
+                                <input type="text" class="form-control" id="edit_tps" name="edit_tps" placeholder="Ketikkan Nomor TPS" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="edit_jumlah_suara" class="form-label">Jumlah Suara:</label>
+                                <input type="text" class="form-control" id="edit_jumlah_suara" name="edit_jumlah_suara" placeholder="Ketikkan Jumlah Suara" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <!-- Script untuk Chart.js -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -280,6 +364,63 @@
 
                 }
             ]
+        });
+    });
+</script>
+
+
+<script>
+    // JavaScript untuk menangani pengiriman form dan menutup modal
+    $(document).ready(function() {
+
+        $('.edit-btn').click(function() {
+            var id = $(this).data('id');
+
+            // Kirim AJAX request untuk mendapatkan data investor berdasarkan ID
+            $.ajax({
+                type: 'GET',
+                url: '<?= base_url() ?>welcome/get_datamasuk/' + id,
+                dataType: 'json',
+                success: function(response) {
+                    // Isi form edit dengan data investor
+                    $('#edit_id').val(response.id);
+                    $('#edit_nama_lengkap').val(response.nama_lengkap);
+                    $('#edit_nomor_hp').val(response.nomor_hp);
+                    $('#edit_wilayah').val(response.wilayah);
+                    $('#edit_tps').val(response.tps);
+                    $('#edit_jumlah_suara').val(response.jumlah_suara);
+
+                    // Tampilkan modal edit
+                    $('#editData').modal('show');
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+
+        // Tambahkan event listener untuk form edit
+        $('#editForm').submit(function(e) {
+            e.preventDefault();
+
+            // Kirim AJAX request untuk update data investor
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url() ?>welcome/update_datamasuk', // Sesuaikan dengan URL controller Anda
+                data: $(this).serialize(),
+                success: function(response) {
+                    console.log(response);
+
+                    // Tutup modal edit
+                    $('#editData').modal('hide');
+
+                    // Reload halaman untuk menampilkan data terbaru
+                    location.reload();
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         });
     });
 </script>

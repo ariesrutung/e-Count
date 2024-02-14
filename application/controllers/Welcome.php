@@ -65,6 +65,7 @@ class Welcome extends CI_Controller
 
 	public function tabel_tps($wilayah)
 	{
+		$data['data_wilayah'] = $this->Hitung_model->get_data_wilayah();
 		// Dekode kembali nama wilayah yang dienkripsi
 		$namaWilayah = urldecode($wilayah);
 

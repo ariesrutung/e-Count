@@ -161,7 +161,7 @@
 		</div>
 		<div class="row mt-5">
 			<div class="col-md-12">
-				<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>auth/login">Lapor Sekarang</a>
+				<a class="btn btn-primary btn-xl text-bold" href="<?= base_url() ?>welcome/inputdata">Lapor Sekarang</a>
 			</div>
 		</div>
 	</div>
@@ -186,9 +186,9 @@
 									<th class="w-10">No.</th>
 									<th class="w-60">Wilayah TPS</th>
 									<th class="w-30">Jumlah Suara</th>
-									<?php if ($this->ion_auth->logged_in()) : ?>
+									<!-- <?php if ($this->ion_auth->logged_in()) : ?>
 										<th>Aksi</th>
-									<?php endif; ?>
+									<?php endif; ?> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -205,12 +205,12 @@
 											</a>
 										</td>
 										<td class="w-30"><?php echo format_angka($key->total_suara); ?></td>
-										<?php if ($this->ion_auth->logged_in()) : ?>
+										<!-- <?php if ($this->ion_auth->logged_in()) : ?>
 											<td>
 												<a href="#" class="btn btn-primary edit-btn btn-sm text-white m-1" data-id="<?= $key->id; ?>" data-bs-toggle="modal" data-bs-target="#editData">Edit</a>
 												<a href="#" class="btn btn-danger edit-btn btn-sm text-white m-1" data-bs-toggle="modal" data-bs-target="#hapusData<?= $key->id; ?>">Hapus</a>
 											</td>
-										<?php endif; ?>
+										<?php endif; ?> -->
 
 
 									</tr>
@@ -247,8 +247,9 @@
 	</div>
 </section>
 
-
-<?php foreach ($data_tps as $key) : ?>
+<!-- 
+<?php // foreach ($data_tps as $key) : 
+?>
 	<div class="modal fade" id="hapusData<?= $key->id; ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusData<?= $key->id; ?>Label" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
@@ -268,7 +269,8 @@
 			</div>
 		</div>
 	</div>
-<?php endforeach; ?>
+<?php // endforeach; 
+?>
 
 
 
@@ -300,9 +302,13 @@
 								<label for="edit_wilayah" class="form-label">Pilih Wilayah TPS:</label>
 								<select class="form-select" id="edit_wilayah" name="edit_wilayah">
 									<option value="" selected="selected" disabled>Pilih Wilayah TPS</option>
-									<?php foreach ($data_wilayah as $wil) : ?>
-										<option value="<?php echo $wil->nama_wilayah; ?>"><?php echo $wil->nama_wilayah; ?></option>
-									<?php endforeach; ?>
+									<?php // foreach ($data_wilayah as $wil) : 
+									?>
+										<option value="<?php // echo $wil->nama_wilayah; 
+														?>"><?php // echo $wil->nama_wilayah; 
+															?></option>
+									<?php // endforeach; 
+									?>
 								</select>
 							</div>
 						</div>
@@ -327,7 +333,7 @@
 			</form>
 		</div>
 	</div>
-</div>
+</div> -->
 
 
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -437,7 +443,7 @@
 		}]
 	});
 </script>
-
+<!-- 
 <script>
 	// JavaScript untuk menangani pengiriman form dan menutup modal
 	$(document).ready(function() {
@@ -492,4 +498,4 @@
 			});
 		});
 	});
-</script>
+</script> -->
